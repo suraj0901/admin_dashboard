@@ -4,17 +4,29 @@ import dotenv from 'dotenv';
 import db from './db/index.js';
 
 dotenv.config();
-db.init();
+const knexdb = db.init();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.use(express.static('public'));
+app.use(express.static(path.resolve('public')));
 
 app.get('/', (req, res) => res.sendFile(path.resolve('view', 'index.html')));
 
-// app.set('/' (req, res) => {
-// })
+app.post('/usersDetails', async (req, res) => {
+  const { name, email } = req.body;
+  if (!name || !email)
+    res.status(400).json({
+      err: 'Pls provide name and email ',
+    });
+  await knexdb('users').insert({ name, email });
+  res.redirect();
+});
+
+app.get('/users', async (req, res) => {
+  const users = await knexdb.select().from('users');
+  res.json(users);
+});
 app.listen(PORT, () => `listening on  port ${PORT}`);

@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+form {
+  margin: 2rem auto;
+  width: min-content;
+}
+
+form > section {
+  margin: 1rem;
+}
+
+section > input {
+  padding: 0.2rem;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #999;
+}
+
+section > button {
+  padding: 0.3rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  width: 100%;
+}
