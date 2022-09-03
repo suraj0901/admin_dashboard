@@ -9,8 +9,9 @@ export const development = {
     filename: './db.sqlite',
   },
   migrations: {
+    directory: 'migrations',
     tableName: 'knex_migrations',
-    stub: 'model',
+    stub: 'model.js',
   },
   useNullAsDefault: true,
 };

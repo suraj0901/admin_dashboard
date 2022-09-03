@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "nodemon index.js",
     "seed": "knex seed:run --knexfile db/knexfile.js",
-    "migrate": "knex migrate:latest --knexfile db/config.js"
+    "mm": "knex migrate:make --knexfile db/config.js ",
+    "rm": "knex migrate:latest --knexfile db/config.js"
   },
   "dependencies": {
     "better-sqlite3": "^7.6.2",
