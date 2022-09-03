@@ -18,11 +18,15 @@ app.get('/', (req, res) => res.sendFile(path.resolve('view', 'index.html')));
 app.post('/usersDetails', async (req, res) => {
   const { name, email } = req.body;
   if (!name || !email)
-    res.status(400).json({
-      err: 'Pls provide name and email ',
+    return res.status(400).json({
+      err: 'Pls provide name and email',
     });
-  await knexdb('users').insert({ name, email });
-  res.redirect();
+  try {
+    await knexdb('users').insert({ name, email });
+  } catch (err) {
+    console.log(err);
+  }
+  res.redirect('/users');
 });
 
 app.get('/users', async (req, res) => {
