@@ -1,4 +1,8 @@
 import { default as knex } from 'knex';
-import knexfile from './knexfile.js';
+import * as config from './config.js';
 
-export const knex = knex(knexfile[process.env.NODE_ENV]);
+export default {
+  init() {
+    knex(config[process.env.NODE_ENV]);
+  },
+};
